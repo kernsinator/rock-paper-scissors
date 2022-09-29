@@ -66,20 +66,9 @@ function getPlayerSelection() {
 function game() {
     console.log("Welcome to this 5-round game of RPS");
     for (let i = 0; i < 5; i++)  {
-        playRound(getPlayerSelection(), getComputerSelection())
+        console.log(playRound(getPlayerSelection(), getComputerSelection()));
     }
+    console.log("Thanks for playing!");
 }
 
 game();
-
-// Display welcome message
-
-// Get input choice from user
-
-// Get random choice for computer
-
-// Compare user and computer choice and find winner
-
-// Display win or lose message to user
-
-// Offer choice to play again
