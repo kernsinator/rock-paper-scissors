@@ -72,16 +72,21 @@ function handleUserSelection(e) {
     const computerScoreDisplay = document.querySelector('.computer-score')
     computerScoreDisplay.innerHTML = computerScore
 
+    checkForWin(results);
+    
+}
+
+ function checkForWin(targetDiv) {
     if (playerScore === 5) {
-        results.innerHTML = "You win the match!"
+        targetDiv.innerHTML = "You win the match!"
         playerScore = 0;
         computerScore = 0;
     } else if (computerScore === 5) {
-        results.innerHTML = "You lost the match!"
+        targetDiv.innerHTML = "You lost the match!"
         playerScore = 0;
         computerScore = 0;
     }
-}
+ }
 
 const buttons = document.querySelectorAll('button')
 buttons.forEach(button => button.addEventListener('click', handleUserSelection))
