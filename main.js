@@ -1,4 +1,7 @@
 
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerSelection() {
     let computerSelection = random(3);
     let message;
@@ -19,12 +22,12 @@ function getComputerSelection() {
     return message;
 }
 
-// Return random number from 0 - upper boundary that is passed as argument
 function random(upperBound) {
     return Math.floor(Math.random() * upperBound);
 }
 
 function playRound(playerSelection, computerSelection) {
+    console.log(`play choice : ${playerSelection} ${typeof(playerSelection)}`);
     
     console.log(`Computer chose ${computerSelection}`);
 
@@ -33,23 +36,29 @@ function playRound(playerSelection, computerSelection) {
     }
     else if (playerSelection === "rock" ) {
         if (computerSelection === "paper") {
-            return "You Lose! Paper beats Rock"
+            computerScore++;
+            return "Computer chooses Paper...You Lose! Paper beats Rock"
         } else {
-            return "You Win! Rock beats Scissors"
+            playerScore++;
+            return "Computer chooses Scissors...You Win! Rock beats Scissors"
         }
     }
     else if (playerSelection === "paper") {
         if (computerSelection === "scissors") {
-            return "You Lose! Scissors beats Paper"
+            computerScore++;
+            return "Computer chooses Scissors...You Lose! Scissors beats Paper"
         } else {
-            return "You Win! Paper beats Rock"
+            playerScore++;
+            return "Computer chooses Rock...You Win! Paper beats Rock"
         }
     }
     else if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
-            return "You Lose! Rock beats Scissors"
+            computerScore++;
+            return "Computer chooses Rock...You Lose! Rock beats Scissors"
         } else {
-            return "You Win! Scissors beats Paper"
+            playerScore++;
+            return "Computer chooses Paper...You Win! Scissors beats Paper"
         }
     }
     
@@ -57,18 +66,36 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
+function handleUserSelection(e) {
+    const results = document.querySelector('.results')
+    results.innerHTML = playRound(e.target.getAttribute("data-selection"), getComputerSelection());
+
+    const playerScoreDisplay = document.querySelector('.player-score')
+    playerScoreDisplay.innerHTML = playerScore
+    const computerScoreDisplay = document.querySelector('.computer-score')
+    computerScoreDisplay.innerHTML = computerScore
+
+    if (playerScore === 5) {
+        results.innerHTML = "You win the match!"
+        playerScore = 0;
+        computerScore = 0;
+    } else if (computerScore === 5) {
+        results.innerHTML = "You lost the match!"
+        playerScore = 0;
+        computerScore = 0;
+    }
+}
+
+const buttons = document.querySelectorAll('button')
+buttons.forEach(button => button.addEventListener('click', handleUserSelection))
+
 function getPlayerSelection() {
-    let playerSelection = prompt("Please choose Rock, Paper, or Scissors");
+    // let playerSelection = prompt("Please choose Rock, Paper, or Scissors");
     playerSelection = playerSelection.toLowerCase();
     return playerSelection;
 }
 
 function game() {
-    console.log("Welcome to this 5-round game of RPS");
-    for (let i = 0; i < 5; i++)  {
-        console.log(playRound(getPlayerSelection(), getComputerSelection()));
-    }
-    console.log("Thanks for playing!");
 }
 
 game();
