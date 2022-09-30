@@ -27,9 +27,6 @@ function random(upperBound) {
 }
 
 function playRound(playerSelection, computerSelection) {
-    console.log(`play choice : ${playerSelection} ${typeof(playerSelection)}`);
-    
-    console.log(`Computer chose ${computerSelection}`);
 
     if (playerSelection === computerSelection) {
         return "It's a draw!";

@@ -1,4 +1,32 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+    margin: 20vh auto auto auto;
+}
+
+.buttons {
+    display: flex;
+    gap: 30px;
+}
+
+button {
+    padding: 1rem;
+    width: 100px;
+}
+
 .results {
     height: 200px;
-    width: 500px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scores {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
